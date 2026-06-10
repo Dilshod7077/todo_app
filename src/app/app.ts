@@ -27,7 +27,6 @@ export class App {
 
   constructor(public tasksService: TasksService) {}
 
-  // COUNTERS
   totalCount = computed(() =>
     this.tasksService.tasks().length
   );
@@ -40,7 +39,6 @@ export class App {
     this.tasksService.tasks().filter(t => !t.done).length
   );
 
-  // ADD
   addTask(): void {
     if (!this.newTask.trim()) return;
 
@@ -57,7 +55,6 @@ export class App {
     this.newTask = '';
   }
 
-  // EDIT
   editTask(task: Task) {
     task.isEdit = true;
   }
@@ -66,14 +63,12 @@ export class App {
     task.isEdit = false;
   }
 
-  // DELETE
   deleteTask(id: number) {
     this.tasksService.tasks.update(t =>
       t.filter(task => task.id !== id)
     );
   }
 
-  // TOGGLE
   toggleDone(task: Task) {
     this.tasksService.tasks.update(t =>
       t.map(x =>
@@ -82,7 +77,6 @@ export class App {
     );
   }
 
-  // FILTERED
   filteredTasks = computed(() => {
     let tasks = this.tasksService.tasks();
 
@@ -101,12 +95,28 @@ export class App {
     return tasks;
   });
 
-  // TRACK BY
+  emptyTitle = computed(() => {
+    const f = this.filter();
+
+    if (f === 'active') return 'Нет активных задач';
+    if (f === 'done') return 'Нет выполненных задач';
+    return 'Список пуст';
+  });
+
+  emptySubtitle = computed(() => {
+    const search = this.search().trim();
+
+    if (search) {
+      return 'По вашему запросу ничего не найдено';
+    }
+
+    return 'Добавьте первую задачу, чтобы начать';
+  });
+
   trackById(index: number, task: Task) {
     return task.id;
   }
 
-  // DRAG DROP
   drop(event: CdkDragDrop<Task[]>) {
     this.tasksService.tasks.update(tasks => {
       const updated = [...tasks];

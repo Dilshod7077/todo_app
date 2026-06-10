@@ -11,7 +11,6 @@
   background: #0b1220;
 }
 
-/* BACKGROUND */
 .container {
   min-height: 100vh;
   padding: 50px 20px;
@@ -23,7 +22,6 @@
     #0b1220;
 }
 
-/* TITLE */
 .title {
   text-align: center;
   font-size: 44px;
@@ -33,7 +31,6 @@
   letter-spacing: -1px;
 }
 
-/* INPUT SECTION */
 .task-input {
   max-width: 750px;
   margin: 0 auto 25px;
@@ -62,7 +59,6 @@
   box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
 }
 
-/* BUTTON */
 .add-btn {
   padding: 14px 18px;
   border-radius: 14px;
@@ -82,7 +78,6 @@
   box-shadow: 0 10px 20px rgba(99,102,241,0.3);
 }
 
-/* FILTERS */
 .filters {
   max-width: 750px;
   margin: 0 auto 25px;
@@ -108,17 +103,49 @@
   background: rgba(255,255,255,0.12);
   transform: translateY(-2px);
 }
+.filters button.active {
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  );
 
-/* LIST */
+  border-color: transparent;
+
+  color: white;
+
+  box-shadow:
+    0 0 15px rgba(99,102,241,0.6),
+    0 0 30px rgba(139,92,246,0.4);
+
+  transform: translateY(-2px);
+}
+
 .task-list {
+  position: relative;
+
   max-width: 750px;
   margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  max-height: 50vh;
+  overflow-y: auto;
+
+  padding-right: 6px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20px,
+    black calc(100% - 20px),
+    transparent
+  );
 }
 
-/* CARD */
+
 .task-card {
   display: flex;
   align-items: center;
@@ -141,7 +168,6 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* TEXT */
 .task-text {
   flex: 1;
   color: white;
@@ -154,14 +180,12 @@
   opacity: 0.4;
 }
 
-/* CHECKBOX */
 .task-card input[type="checkbox"] {
   width: 18px;
   height: 18px;
   accent-color: #6366f1;
 }
 
-/* EDIT INPUT */
 .edit-input {
   flex: 1;
   padding: 10px 12px;
@@ -173,7 +197,6 @@
   outline: none;
 }
 
-/* ICON BUTTON */
 .icon-btn {
   width: 38px;
   height: 38px;
@@ -193,7 +216,6 @@
   transform: scale(1.05);
 }
 
-/* STATS */
 .stats {
   max-width: 750px;
   margin: 30px auto 0;
@@ -226,17 +248,131 @@
   color: rgba(255,255,255,0.6);
 }
 
-/* MOBILE */
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+
+  .container {
+    padding: 20px 12px;
+  }
+
+  .title {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
   .task-input {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-input input,
+  .add-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .filters {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filters button {
+    flex: 1 1 120px;
+    min-height: 44px;
+  }
+
+  .task-list {
+    gap: 10px;
+    max-height: 45vh;
+  }
+
+  .task-card {
+    padding: 14px;
+    min-height: 60px;
+    touch-action: pan-y;
+  }
+
+  .task-text {
+    font-size: 15px;
+  }
+
+  .task-card input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
   }
 
   .stats {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
-  .title {
-    font-size: 32px;
+  .stats-item {
+    padding: 14px;
   }
+
+  .task-card:hover,
+  .icon-btn:hover,
+  .filters button:hover,
+  .add-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+.drag-handle {
+  padding: 8px;
+  font-size: 22px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  color: rgba(255,255,255,0.7);
+}
+
+.task-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-list::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.empty-state {
+  max-width: 750px;
+  margin: 30px auto;
+  padding: 40px 20px;
+
+  text-align: center;
+
+  background: rgba(255,255,255,0.04);
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 18px;
+
+  backdrop-filter: blur(10px);
+}
+
+.empty-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.empty-subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
 }

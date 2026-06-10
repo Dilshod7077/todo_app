@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-practice": {
+    "todo_app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -65,10 +65,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-practice:build:production"
+              "buildTarget": "todo_app:build:production"
             },
             "development": {
-              "buildTarget": "angular-practice:build:development"
+              "buildTarget": "todo_app:build:development"
             }
           },
           "defaultConfiguration": "development"

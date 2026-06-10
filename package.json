@@ -1,5 +1,5 @@
 {
-  "name": "angular-practice",
+  "name": "todo_app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,9 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular-practice": "node dist/angular-practice/server/server.mjs",
-    "build:gh": "ng build --base-href /todo-app/",
-    "deploy": "npx angular-cli-ghpages --dir=dist/angular-practice"
+    "serve:ssr:todo_app": "node dist/todo_app/server/server.mjs"
   },
   "private": true,
   "packageManager": "npm@11.11.0",

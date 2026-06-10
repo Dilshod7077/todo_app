@@ -2,7 +2,6 @@
 
   <h1 class="title">✨ Todo App</h1>
 
-  <!-- INPUT -->
   <div class="task-input">
 
     <input
@@ -14,6 +13,7 @@
 
     <input
       [(ngModel)]="newTask"
+      (keyup.enter)="addTask()"
       placeholder="Добавить новую задачу..."
     >
 
@@ -23,19 +23,43 @@
 
   </div>
 
-  <!-- FILTERS -->
   <div class="filters">
-    <button (click)="filter.set('all')">Все</button>
-    <button (click)="filter.set('active')">Активные</button>
-    <button (click)="filter.set('done')">Выполненные</button>
+    <button
+      [class.active]="filter() === 'all'"
+      (click)="filter.set('all')"
+    >
+      Все
+    </button>
+
+    <button
+      [class.active]="filter() === 'active'"
+      (click)="filter.set('active')"
+    >
+      Активные
+    </button>
+
+    <button
+      [class.active]="filter() === 'done'"
+      (click)="filter.set('done')"
+    >
+      Выполненные
+    </button>
   </div>
 
-  <!-- LIST -->
   <div
     class="task-list"
     cdkDropList
     (cdkDropListDropped)="drop($event)"
   >
+    <div class="empty-state" *ngIf="filteredTasks().length === 0">
+      <div class="empty-title">
+        {{ emptyTitle() }}
+      </div>
+
+      <div class="empty-subtitle">
+        {{ emptySubtitle() }}
+      </div>
+    </div>
 
     <div
       class="task-card"
@@ -43,6 +67,9 @@
       cdkDrag
     >
 
+      <span class="drag-handle" cdkDragHandle>
+          ☰
+      </span>
       <input
         type="checkbox"
         [checked]="task.done"
@@ -90,7 +117,6 @@
 
   </div>
 
-  <!-- STATS -->
   <div class="stats">
 
     <div class="stats-item">
