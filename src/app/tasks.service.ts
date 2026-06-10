@@ -19,10 +19,8 @@ export class TasksService {
 
   constructor() {
 
-    // LOAD
     this.loadFromStorage();
 
-    // SAVE (только в браузере)
     effect(() => {
       if (!isPlatformBrowser(this.platformId)) return;
 

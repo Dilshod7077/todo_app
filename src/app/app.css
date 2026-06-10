@@ -6,13 +6,13 @@
 
 :host {
   display: block;
-  min-height: 100vh;
+  min-height: 100dvh;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto;
   background: #0b1220;
 }
 
 .container {
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   padding: 50px 20px;
 
   background:
@@ -375,4 +375,40 @@
 .empty-subtitle {
   font-size: 14px;
   color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 600px) {
+
+  .title {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .task-text {
+    font-size: 16px;
+  }
+
+  .filters button {
+    font-size: 14px;
+  }
+
+  .add-btn {
+    font-size: 14px;
+  }
+
+  .stats-number {
+    font-size: 18px;
+  }
+
+  .stats-label {
+    font-size: 12px;
+  }
+
+  .empty-title {
+    font-size: 18px;
+  }
+
+  .empty-subtitle {
+    font-size: 13px;
+  }
 }

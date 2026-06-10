@@ -27,6 +27,18 @@ export class App {
 
   constructor(public tasksService: TasksService) {}
 
+  ngOnInit() {
+    const setVH = () => {
+      document.documentElement.style.setProperty(
+        '--vh',
+        `${window.innerHeight * 0.01}px`
+      );
+    };
+
+    setVH();
+    window.addEventListener('resize', setVH);
+  }
+
   totalCount = computed(() =>
     this.tasksService.tasks().length
   );
