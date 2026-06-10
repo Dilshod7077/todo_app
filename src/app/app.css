@@ -425,3 +425,23 @@ html, body {
     font-size: 13px;
   }
 }
+
+.task-card {
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.task-card.deleting {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  filter: blur(8px);
+}
+.task-card.completed {
+  opacity: 0.6;
+  transform: scale(0.98);
+}
+
+.task-card.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}

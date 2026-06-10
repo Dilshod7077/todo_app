@@ -3,4 +3,5 @@ export interface TaskModel {
   text: string;
   isEdit: boolean;
   done: boolean;
+  isDeleting?: boolean;
 }

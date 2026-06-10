@@ -76,17 +76,37 @@ export class App {
   }
 
   deleteTask(id: number) {
-    this.tasksService.tasks.update(t =>
-      t.filter(task => task.id !== id)
+    this.tasksService.tasks.update(tasks =>
+      tasks.map(task =>
+        task.id === id
+          ? { ...task, isDeleting: true }
+          : task
+      )
     );
+
+    setTimeout(() => {
+      this.tasksService.tasks.update(tasks =>
+        tasks.filter(task => task.id !== id)
+      );
+    }, 250);
   }
 
   toggleDone(task: Task) {
     this.tasksService.tasks.update(t =>
       t.map(x =>
-        x.id === task.id ? { ...x, done: !x.done } : x
+        x.id === task.id
+          ? { ...x, done: !x.done }
+          : x
       )
     );
+
+    if (!task.done) {
+      setTimeout(() => {
+        this.tasksService.tasks.update(t =>
+          t.filter(x => x.id !== task.id)
+        );
+      }, 400);
+    }
   }
 
   filteredTasks = computed(() => {

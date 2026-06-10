@@ -65,6 +65,8 @@
       class="task-card"
       *ngFor="let task of filteredTasks(); trackBy: trackById"
       cdkDrag
+      [class.deleting]="task.isDeleting"
+      [class.completed]="task.done"
     >
 
       <span class="drag-handle" cdkDragHandle>

@@ -1,12 +1,6 @@
 import { Injectable, signal, effect, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
-export interface Task {
-  id: number;
-  text: string;
-  isEdit: boolean;
-  done: boolean;
-}
+import { TaskModel } from './tasks.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +8,7 @@ export interface Task {
 export class TasksService {
 
   private platformId = inject(PLATFORM_ID);
-
-  tasks = signal<Task[]>([]);
+  tasks = signal<TaskModel[]>([]);
 
   constructor() {
 
